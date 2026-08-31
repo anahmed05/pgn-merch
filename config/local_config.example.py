@@ -8,8 +8,8 @@
 # =====================================================================
 
 # Shared secret. Must match the SECRET in the Apps Script behind the sheet.
-ORDER_TOKEN = ""
+ORDER_TOKEN = "sk29XjqcFOWF31N3vNvChqnhdvSzDdNN"
 
 # Google Apps Script Web App URL that receives orders.
 # Looks like: https://script.google.com/macros/s/AKfycb.../exec
-ORDER_ENDPOINT = ""
+ORDER_ENDPOINT = "https://script.google.com/macros/s/AKfycbxuhToGg2HytFTB4Z8XMGa4ysfQ7jvGn1csOPt9t-3y6mq9V8gushDMFdWuFf9gTQV_/exec"
