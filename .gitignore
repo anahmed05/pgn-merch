@@ -1,0 +1,9 @@
+﻿config/local_config.py
+dist/
+__pycache__/
+*.pyc
+*.zip
+download
+Thumbs.db
+desktop.ini
+.DS_Store

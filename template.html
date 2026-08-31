@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ORG_NAME}} · {{UNIVERSITY}} — Chapter Merchandise</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+{{STYLES}}
+
+/* confirmation screen — payment step */
+.c-pay { margin: 18px 0 6px; text-align: center; }
+.c-pay .pay-btn { display: inline-block; }
+.c-pay .pay-note { margin: 10px auto 0; max-width: 34ch; font-size: .85rem; line-height: 1.5; opacity: .78; }
+
+/* "Got an idea?" button */
+.idea-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem 1.15rem;
+  flex: 0 0 auto;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  overflow: hidden;
+  transition: color .25s ease, background-color .25s ease,
+              box-shadow .25s ease, transform .25s ease;
+}
+/* shimmer that sweeps across on hover */
+.idea-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%,
+              rgba(255, 255, 255, .55) 50%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform .6s ease;
+  pointer-events: none;
+}
+.idea-link:hover, .idea-link:focus-visible {
+  color: var(--cardinal);
+  background: var(--gold);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px -6px var(--gold);
+  outline: none;
+}
+.idea-link:hover::before, .idea-link:focus-visible::before { transform: translateX(120%); }
+.idea-link:active { transform: translateY(0); }
+
+.idea-bulb { width: 17px; height: 17px; flex: 0 0 auto; overflow: visible; }
+.idea-bulb .rays { opacity: 0; transform-origin: 12px 12px; transform: scale(.75); transition: opacity .25s ease, transform .25s ease; }
+.idea-link:hover .idea-bulb .rays, .idea-link:focus-visible .idea-bulb .rays { opacity: 1; transform: scale(1); }
+.idea-link:hover .idea-bulb .glass, .idea-link:focus-visible .idea-bulb .glass { fill: rgba(255, 255, 255, .45); }
+
+.idea-arrow { display: inline-block; transform: translateX(-3px); opacity: 0; transition: transform .25s ease, opacity .25s ease; }
+.idea-link:hover .idea-arrow, .idea-link:focus-visible .idea-arrow { transform: translateX(0); opacity: 1; }
+
+/* every few seconds the bulb blinks on for a moment — catches the eye without nagging */
+@keyframes ideaBlink {
+  0%, 82%, 100% { opacity: 0; transform: scale(.75); }
+  88%, 94%      { opacity: .9; transform: scale(1); }
+}
+.idea-link:not(:hover) .idea-bulb .rays { animation: ideaBlink 7s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .idea-link, .idea-link::before, .idea-bulb .rays, .idea-arrow { transition: none; animation: none; }
+}
+@media (max-width: 520px) {
+  .idea-link { padding: .5rem .85rem; font-size: .68rem; }
+}
+</style>
+{{ANALYTICS}}
+</head>
+<body>
+{{DEADLINE_BANNER}}
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="corner-mark">{{MONOGRAM}}</div>
+  <div class="hero-inner">
+    <div class="crest"><img src="{{CREST}}" alt="{{ORG_NAME}} crest"></div>
+    <div class="chapter-lines">
+      <span class="eyebrow chapter-eyebrow">{{UNIVERSITY}}</span>
+      <span class="eyebrow chapter-sub">{{CHAPTER}}</span>
+    </div>
+    <div class="monogram">{{MONOGRAM}}</div>
+    <h1 class="wordmark">{{ORG_NAME}}</h1>
+    <p class="slogan">{{SLOGAN}}</p>
+    <div class="pillars">{{PILLARS}}</div>
+    <a href="#shop" class="scroll-cue">Shop the collection <span class="arrow">↓</span></a>
+  </div>
+</header>
+
+<!-- ===================== SHOP ===================== -->
+<main class="shop" id="shop">
+  <div class="shop-head">
+    <div>
+      <span class="eyebrow">Chapter Store</span>
+      <h2>Merchandise</h2>
+    </div>
+    <a class="idea-link" id="ideaBtn" href="#" target="_blank" rel="noopener">
+      <svg class="idea-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <g class="rays">
+          <path d="M12 1.4v1.3"/><path d="M4.4 4.4l.9.9"/><path d="M19.6 4.4l-.9.9"/>
+          <path d="M1.6 11.6h1.3"/><path d="M21.1 11.6h1.3"/>
+        </g>
+        <path class="glass" d="M12 4.2a5.6 5.6 0 0 0-3.4 10.1c.5.4.8.9.9 1.5l.1.6h4.8l.1-.6c.1-.6.4-1.1.9-1.5A5.6 5.6 0 0 0 12 4.2z"/>
+        <path d="M9.7 18.6h4.6"/><path d="M10.6 21h2.8"/>
+      </svg>
+      <span class="idea-text">Got an idea?</span>
+      <span class="idea-arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+  <div class="shop-tools">
+    <input type="search" id="searchBox" class="search-box" placeholder="Search merch…" aria-label="Search merchandise">
+  </div>
+  <div class="filters">{{CHIPS}}</div>
+  <p class="no-results" id="noResults" hidden>No items match your search.</p>
+  <div class="grid">{{CARDS}}</div>
+</main>
+
+<!-- ===================== FAQ ===================== -->
+<section class="order-info" id="faq">
+  <div class="order-info-inner">
+    <span class="eyebrow">Questions</span>
+    <h2>FAQ</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>How do I pay?</summary>
+        <p>Two ways: Cheddar Up or cash. When you place your order, the confirmation screen gives you a Cheddar Up link — pay there and put your Order # in the payment note so we can match it up. If you'd rather pay cash, hand it to any exec at chapter and mention your Order #. Either way we'll text you to confirm.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do I get my order?</summary>
+        <p>Two ways: pick it up at chapter, or have it delivered. If you'd rather grab it at chapter, leave the address blank at checkout and mention pickup in the notes.</p>
+      </details>
+      <details class="faq-item">
+        <summary>When will my order be ready?</summary>
+        <p>Once your payment is confirmed, we'll coordinate a pickup or delivery time and text you when it's ready.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What size should I get?</summary>
+        <p>Most tees run true to size. If you like a relaxed or oversized fit, size up. Text us if you're unsure.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Have an idea for new merch?</summary>
+        <p>Yes! Use the "Got an idea?" button up top to submit your idea — we take chapter suggestions for future drops.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Who do I contact with questions?</summary>
+        <p>Text Abrar Ahmed at (804) 412-5936 or Kennedy Munoz at (703) 623-8528.</p>
+      </details>
+    </div>
+    <div class="order-cta">
+      <a class="btn btn-gold" id="shopBtn" href="#shop">Shop the collection</a>
+    </div>
+    <p class="contact-line">Questions? Shoot us a text!<br>
+      <a href="sms:+18044125936">Abrar Ahmed · (804) 412-5936</a>
+      <span class="sep">·</span>
+      <a href="sms:+17036238528">Kennedy Munoz · (703) 623-8528</a>
+    </p>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="fgreek">{{MONOGRAM}}</div>
+  <div class="fslogan">{{SLOGAN}}</div>
+  <div class="fmeta">{{FOOT_META}}</div>
+</footer>
+
+<!-- ===================== ORDER DRAWER ===================== -->
+<button class="cart-toggle" id="cartToggle">
+  Order list <span class="cart-count" id="cartCount">0</span>
+</button>
+<div class="drawer-scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3 id="drawerTitle">Your order</h3>
+    <button class="drawer-close" id="drawerClose" aria-label="Close">×</button>
+  </div>
+
+  <div class="drawer-body" id="orderView">
+    <div class="drawer-items" id="drawerItems"></div>
+    <form class="checkout" id="checkoutForm">
+      <input type="text" id="fWebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+
+      <div class="drawer-total"><span>Estimated total</span><span class="t-val" id="drawerTotal">$0</span></div>
+      <label>Full name
+        <input id="fName" name="name" autocomplete="name" required>
+      </label>
+      <label>Phone number
+        <input id="fPhone" name="phone" type="tel" autocomplete="tel" required>
+      </label>
+      <label>Class year
+        <select id="fClass" name="classYear" required>
+          <option value="" disabled selected>Select…</option>
+          <option>Freshman</option>
+          <option>Sophomore</option>
+          <option>Junior</option>
+          <option>Senior</option>
+          <option>Alumni</option>
+        </select>
+      </label>
+      <label>Pledge class <span style="text-transform:none;letter-spacing:0;">(e.g. Alpha, Beta)</span>
+        <input id="fPledge" name="pledgeClass" placeholder="Alpha">
+      </label>
+      <label>Email <span style="text-transform:none;letter-spacing:0;">(optional)</span>
+        <input id="fEmail" name="email" type="email" autocomplete="email">
+      </label>
+      <label>Address <span style="text-transform:none;letter-spacing:0;">(optional)</span>
+        <textarea id="fAddress" name="address" rows="3" autocomplete="street-address"
+                  placeholder="Street, city, state, ZIP"></textarea>
+      </label>
+      <label>Notes <span style="text-transform:none;letter-spacing:0;">(optional)</span>
+        <textarea id="fNotes" name="notes" rows="2" placeholder="Anything we should know?"></textarea>
+      </label>
+      <button type="submit" class="btn btn-gold" id="placeBtn">Place order</button>
+      <p class="drawer-note" id="drawerNote">Once you place your order, we'll send you a confirmation text shortly.</p>
+    </form>
+  </div>
+
+  <div class="confirm" id="confirmView" hidden>
+    <div class="check">✓</div>
+    <h3>Thank you!</h3>
+    <p class="lead">Thank you for placing your order.<br>We'll send you a confirmation text shortly.</p>
+    <p class="lead">Confirmation <span class="oid" id="confirmId"></span></p>
+    <div class="c-summary" id="confirmSummary"></div>
+    <p class="lead" id="confirmContact"></p>
+    <div class="c-pay" id="confirmPay" hidden></div>
+    <button class="btn btn-ghost again" id="againBtn" style="border-color:var(--cardinal);color:var(--cardinal);">Place another order</button>
+  </div>
+</aside>
+
+<script>
+window.__PGN_CONFIG__ = {{CONFIG_JSON}};
+</script>
+<script>
+{{APP_JS}}
+</script>
+
+
+
+</body>
+</html>
