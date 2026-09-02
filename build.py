@@ -236,8 +236,15 @@ def build():
     DIST.mkdir(exist_ok=True)
     target = DIST / "index.html"
     target.write_text(out, encoding="utf-8")
+
+    # GitHub Pages serves the copy in the repo root, so write it there too.
+    # Saves having to remember `copy dist\index.html index.html` every time.
+    root_copy = ROOT / "index.html"
+    root_copy.write_text(out, encoding="utf-8")
+
     kb = len(out.encode()) / 1024
     print(f"✓ Built {target}  ({kb:.0f} KB, {len(P.PRODUCTS)} products)")
+    print(f"  also wrote {root_copy}  (this is what GitHub Pages serves)")
     if not P.ORDER_ENDPOINT:
         print("  note: ORDER_ENDPOINT is empty — checkout shows a thank-you but")
         print("        orders aren't saved yet. See order-sheet/SETUP.md.")
