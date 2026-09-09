@@ -119,9 +119,13 @@ def render_card(p):
     link = p.get("link")
     link_label = p.get("link_label", "Order online")
 
+    # Coming Soon: show the card, but no sizes and no way to order it yet.
+    # Set "coming_soon": True, or just give it the "Coming Soon" badge.
+    soon = bool(p.get("coming_soon")) or p.get("badge") == "Coming Soon"
+
     stock = p.get("stock") or {}
-    # products that link out don't show size pickers or stock
-    if p.get("sizes") and not link:
+    # products that link out, or aren't orderable yet, don't show size pickers
+    if p.get("sizes") and not link and not soon:
         btns = ""
         for s in p["sizes"]:
             q = stock.get(s)
@@ -138,6 +142,8 @@ def render_card(p):
     if link:
         add = (f'<a class="add add-link" href="{esc(link)}" target="_blank" '
                f'rel="noopener">{esc(link_label)} ↗</a>')
+    elif soon:
+        add = '<button class="add coming" disabled>Coming soon</button>'
     elif p.get("soldout"):
         add = '<button class="add soldout" disabled>Sold out</button>'
     else:
